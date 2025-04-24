@@ -19,4 +19,5 @@ jobs:
       run: pip install semgrep
 
     - name: Run Semgrep with custom rules
-      run: semgrep --config .semgrep/output_encoding.yml
+      run: semgrep --config ${{ github.workspace }}/.semgrep/output_encoding.yml
+
