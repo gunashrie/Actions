@@ -1,10 +1,20 @@
 rules:
-  - id: improper-output-encoding
+  - id: python-improper-output-encoding
     patterns:
-      - pattern: $VAR
-    message: "Improper output encoding detected. Ensure user input is properly encoded before being displayed."
+      - pattern: print("Hello, " + $VAR)
+    message: "Improper output encoding detected in Python. Use html.escape() to encode user input."
     severity: ERROR
-    languages: [python, javascript, java]
+    languages: [python]
+    metadata:
+      category: security
+      technology: web
+
+  - id: javascript-improper-output-encoding
+    patterns:
+      - pattern: document.write("Hello, " + $VAR)
+    message: "Improper output encoding detected in JavaScript. Use encodeURIComponent() to encode user input."
+    severity: ERROR
+    languages: [javascript]
     metadata:
       category: security
       technology: web
